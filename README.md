@@ -126,7 +126,7 @@ Whereas if you use Gradle, add this to your build.gradle:
 ```gradle
 allprojects {
     repositories {
-        maven { 'url 'https://jitpack.io' }
+        maven { url "https://jitpack.io" }
     }
 }
 
