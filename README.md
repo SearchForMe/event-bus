@@ -13,7 +13,7 @@ you can have multiple instances of it in a project, allowing you to have differe
 ```java
 import cf.searchforme.EventBus;
 
-@Getter private final EventBus bus = new EventBus();
+private final EventBus bus = new EventBus();
 ```
 This should be placed in your main class.
 
