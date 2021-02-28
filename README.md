@@ -98,3 +98,43 @@ bus.post(event);
 
 You have to subscribe the listener class in the EventBus. To call an event you simply have to
 post it to the bus. You can check whether it has been cancelled with the Cancellable#isCancelled method.
+
+# Adding the dependency
+
+### Maven
+If you use Maven, add this to your pom.xml:
+```xml
+<repositories>
+    <repository>
+        <id>jitpack.io</id>
+        <url>https://jitpack.io</url>
+    </repository>
+</repositories>
+
+<dependencies>
+    <dependency>
+        <groupId>com.github.SearchForMe</groupId>
+        <artifactId>event-bus</artifactId>
+        <version>v1.0</version>
+    </dependency>
+</dependencies>
+```
+
+### Gradle
+
+Whereas if you use Gradle, add this to your build.gradle:
+```gradle
+allprojects {
+    repositories {
+        maven { 'url 'https://jitpack.io' }
+    }
+}
+
+dependencies {
+    compile 'com.github.SearchForMe:event-bus:v1.0'
+}
+```
+
+### JAR File
+
+If you don't use any of the above, you can simply add the [JAR file](https://github.com/SearchForMe/event-bus/releases/tag/v1.0) to your dependencies.
