@@ -7,11 +7,11 @@ public class MainEventTest {
 
         bus.subscribeListeners(new MessageEventListener());
 
-        MessageSendEvent one = new MessageSendEvent("foo", "bar");
+        MessageSendEvent one = new MessageSendEvent("foo", "this is a test");
         bus.post(one);
         System.out.println("Cancelled: " + one.isCancelled());
 
-        MessageSendEvent two = new MessageSendEvent("foo", "this is a test");
+        MessageSendEvent two = new MessageSendEvent("foo", "bar");
         bus.postAsync(two);
     }
 
