@@ -1,4 +1,4 @@
-#event-bus
+# event-bus
 
 A compact framework that allows you to create custom events and listen to them.
 Especially useful for projects that use a UI, such Swing or Android, when trying to
@@ -17,7 +17,7 @@ import cf.searchforme.EventBus;
 ```
 This should be placed in your main class.
 
-###Example Event
+### Example Event
 
 ```java
 import cf.searchforme.Cancellable;
@@ -64,7 +64,7 @@ public class MessageSendEvent extends Event implements Cancellable {
 
 This will create a custom MessageSend event, that can be cancelled.
 
-###Creating a Listener
+### Creating a Listener
 
 ```java
 import cf.searchforme.EventListener;
@@ -87,7 +87,7 @@ public class MessageEventListener implements EventListener {
 
 This will listen for the MessageSendEvent, and cancel it if the message contains "test".
 
-###Registering and calling the Event
+### Registering and calling the Event
 
 ```java
 bus.subscribeListeners(new MessageEventListener());
