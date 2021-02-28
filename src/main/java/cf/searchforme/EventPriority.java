@@ -1,7 +1,7 @@
 package cf.searchforme;
 
 /**
- * The event priority. Used in the {@link cf.searchforme.Subscribe} annotation. High priority will be called first.
+ * The event priority. Used in the {@link cf.searchforme.Subscribe} annotation. High priority listeners will be called first.
  */
 public enum EventPriority {
 
