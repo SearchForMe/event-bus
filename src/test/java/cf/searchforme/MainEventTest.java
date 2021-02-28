@@ -12,8 +12,7 @@ public class MainEventTest {
         System.out.println("Cancelled: " + one.isCancelled());
 
         MessageSendEvent two = new MessageSendEvent("foo", "this is a test");
-        bus.post(two);
-        System.out.println("Cancelled: " + two.isCancelled());
+        bus.postAsync(two);
     }
 
 }

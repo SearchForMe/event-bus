@@ -3,6 +3,7 @@ package cf.searchforme;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.*;
+import java.util.concurrent.CompletableFuture;
 
 /**
  * The main class. Allows to register, unregister and post events.
@@ -61,6 +62,16 @@ public class EventBus {
                             e.printStackTrace();
                         }
                     });
+        });
+    }
+
+    /**
+     * Posts the event to all the registered listeners asynchronously. Calls the methods annotated with {@link cf.searchforme.Subscribe}
+     * @param event The event that is supposed to be posted.
+     */
+    public void postAsync(Event event){
+        CompletableFuture.runAsync(() -> {
+            post(event);
         });
     }
 
