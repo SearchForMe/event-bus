@@ -1,7 +1,7 @@
 # event-bus
 
 A compact framework that allows you to create custom events and listen to them.
-Especially useful for projects that use a UI, such Swing or Android, when trying to
+Especially useful for projects that use a UI, such as Swing or Android, when trying to
 separate the View and the Controller
 
 It uses streams, which means it is supported only by **Java 8+**
