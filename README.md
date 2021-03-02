@@ -115,7 +115,7 @@ If you use Maven, add this to your pom.xml:
     <dependency>
         <groupId>com.github.SearchForMe</groupId>
         <artifactId>event-bus</artifactId>
-        <version>v1.0</version>
+        <version>v1.0.1</version>
     </dependency>
 </dependencies>
 ```
@@ -131,7 +131,7 @@ allprojects {
 }
 
 dependencies {
-    compile 'com.github.SearchForMe:event-bus:v1.0'
+    compile 'com.github.SearchForMe:event-bus:v1.0.1'
 }
 ```
 
