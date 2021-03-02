@@ -4,6 +4,7 @@ import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.*;
 import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.ExecutionException;
 
 /**
  * The main class. Allows to register, unregister and post events.
@@ -13,7 +14,7 @@ public class EventBus {
     private final List<EventListener> registeredListeners = new ArrayList<>();
 
     /**
-     * Subscribes any given listener classes to the bus.
+     * Subscribes any given listener instances to the bus.
      * @param listeners The listener instances.
      */
     public void subscribeListeners(EventListener... listeners){
@@ -29,7 +30,7 @@ public class EventBus {
     }
 
     /**
-     * Unsubscribes the given listener class from the bus. Used if you don't want to save the listener instance.
+     * Unsubscribes the given listener class from the bus. Used if you don't want to save the listener's instance.
      * @param listenerClass The listener class.
      */
     public void unsubscribeListener(Class<EventListener> listenerClass){
@@ -47,7 +48,7 @@ public class EventBus {
      * Posts the event to all the registered listeners. Calls the methods annotated with {@link cf.searchforme.Subscribe}
      * @param event The event that is supposed to be posted.
      */
-    public void post(Event event) {
+    public Event post(Event event) {
         registeredListeners.forEach(listener -> {
             Arrays.stream(listener.getClass().getMethods())
                     .filter(method -> method.getAnnotation(Subscribe.class) != null
@@ -63,16 +64,23 @@ public class EventBus {
                         }
                     });
         });
+        return event;
     }
 
     /**
      * Posts the event to all the registered listeners asynchronously. Calls the methods annotated with {@link cf.searchforme.Subscribe}
      * @param event The event that is supposed to be posted.
      */
-    public void postAsync(Event event){
-        CompletableFuture.runAsync(() -> {
-            post(event);
-        });
+    public Event postAsync(Event event) {
+        CompletableFuture<Event> future = CompletableFuture.supplyAsync(() -> post(event));
+
+        try {
+            return future.get();
+        } catch (InterruptedException | ExecutionException exception){
+            exception.printStackTrace();
+        }
+
+        return null;
     }
 
 }
