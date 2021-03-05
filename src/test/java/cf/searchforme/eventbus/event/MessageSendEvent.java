@@ -1,4 +1,7 @@
-package cf.searchforme;
+package cf.searchforme.eventbus.event;
+
+import cf.searchforme.eventbus.Cancellable;
+import cf.searchforme.eventbus.Event;
 
 public class MessageSendEvent extends Event implements Cancellable {
 

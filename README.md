@@ -8,20 +8,20 @@ It uses streams, which means it is supported only by **Java 8+**
 # Usage
 
 Keep in mind that EventBus is not a class that contains static methods, which means that
-you can have multiple instances of it in a project, allowing you to have different event streams. 
+you can have multiple instances of it in a project, allowing you to have different event streams.
 
 ```java
-import cf.searchforme.EventBus;
 
-private final EventBus bus = new EventBus();
+
+private final EventBus bus=new EventBus();
 ```
 This should be placed in your main class.
 
 ### Example Event
 
 ```java
-import cf.searchforme.Cancellable;
-import cf.searchforme.Event;
+import Cancellable;
+import Event;
 
 /**
  * Implement the Cancellable interface if you want the
@@ -30,13 +30,13 @@ import cf.searchforme.Event;
 public class MessageSendEvent extends Event implements Cancellable {
 
     private boolean cancelled;
-    
+
     private final String sender;
     private final String message;
-    
-    public MessageSendEvent(String sender, String message){
+
+    public MessageSendEvent(String sender, String message) {
         name = "CustomName";
-        
+
         this.sender = sender;
         this.message = message;
     }
@@ -50,15 +50,15 @@ public class MessageSendEvent extends Event implements Cancellable {
     public void setCancelled(boolean cancel) {
         this.cancelled = cancel;
     }
-    
+
     public String getSender() {
         return sender;
     }
-    
-    public String getMessage(){
+
+    public String getMessage() {
         return message;
     }
-    
+
 }
 ```
 
@@ -67,15 +67,16 @@ This will create a custom MessageSend event, that can be cancelled.
 ### Creating a Listener
 
 ```java
-import cf.searchforme.EventListener;
-import cf.searchforme.EventPriority;
-import cf.searchforme.Subscribe;
+import EventListener;
+import cf.searchforme.Listener;
+import EventPriority;
+import Subscribe;
 
 public class MessageEventListener implements EventListener {
 
     @Subscribe(priority = EventPriority.HIGH)
-    public void onEvent(MessageSendEvent event){
-        if(event.getMessage().contains("test")){
+    public void onEvent(MessageSendEvent event) {
+        if (event.getMessage().contains("test")) {
             event.setCancelled(true);
             return;
         }

@@ -1,4 +1,4 @@
-package cf.searchforme;
+package cf.searchforme.eventbus;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;

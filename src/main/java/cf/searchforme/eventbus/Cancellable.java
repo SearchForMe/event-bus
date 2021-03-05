@@ -1,4 +1,4 @@
-package cf.searchforme;
+package cf.searchforme.eventbus;
 
 /**
  * This interface is to be implemented when an event should be able to be cancelled.
