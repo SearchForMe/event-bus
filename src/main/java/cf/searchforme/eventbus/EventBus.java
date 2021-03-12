@@ -11,7 +11,7 @@ import java.util.stream.Collectors;
  */
 public class EventBus {
 
-    private final Map<ComparableMethod, EventListener> methods = new TreeMap<>();
+    private List<Subscriber> subscribers = new LinkedList<>();
 
     /**
      * Subscribes any given listener instances to the bus.
@@ -21,17 +21,11 @@ public class EventBus {
         for (EventListener listener : listeners) {
             Arrays.stream(listener.getClass().getMethods())
                     .filter(method -> method.getAnnotation(Subscribe.class) != null
-                                && method.getParameterTypes().length == 1
-                                && Event.class.isAssignableFrom(method.getParameters()[0].getType()))
-                    .forEach(method -> methods.put(new ComparableMethod(method), listener));
+                            && method.getParameterTypes().length == 1
+                            && Event.class.isAssignableFrom(method.getParameters()[0].getType()))
+                    .forEach(method -> subscribers.add(new Subscriber(method, listener)));
         }
-
-        TreeSet<ComparableMethod> set = new TreeSet<>(methods.keySet());
-
-        set = set.stream().sorted()
-                .collect(Collectors.toCollection(TreeSet::new));
-
-        set.forEach((method) -> methods.put(method, methods.get(method)));
+        subscribers = subscribers.stream().sorted().collect(Collectors.toCollection(LinkedList::new));
     }
 
     /**
@@ -39,7 +33,7 @@ public class EventBus {
      * @param listener The listener instance.
      */
     public void unsubscribeListener(EventListener listener){
-        methods.entrySet().removeIf(entry -> entry.getValue().equals(listener));
+        subscribers.removeIf(subscriber -> subscriber.getListener().equals(listener));
     }
 
     /**
@@ -47,14 +41,14 @@ public class EventBus {
      * @param listenerClass The listener class.
      */
     public void unsubscribeListener(Class<EventListener> listenerClass){
-        methods.entrySet().removeIf(entry -> entry.getKey().getMethod().getDeclaringClass().equals(listenerClass));
+        subscribers.removeIf(subscriber -> subscriber.getMethod().getDeclaringClass().equals(listenerClass));
     }
 
     /**
      * Clears the listeners.
      */
     public void unsubscribeAll(){
-        methods.clear();
+        subscribers.clear();
     }
 
     /**
@@ -62,9 +56,9 @@ public class EventBus {
      * @param event The event that is supposed to be posted.
      */
     public Event post(Event event) {
-        methods.keySet().forEach((m) -> {
-            Method method = m.getMethod();
-            EventListener listener = methods.get(m);
+        subscribers.forEach((subscriber) -> {
+            Method method = subscriber.getMethod();
+            EventListener listener = subscriber.getListener();
             if(method.getParameters()[0].getType().equals(event.getClass())){
                 try {
                     method.invoke(listener, event);

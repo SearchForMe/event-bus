@@ -14,7 +14,7 @@ public class MainEventTest {
     void testSubscription(){
         long start = System.currentTimeMillis();
 
-        eventBus.subscribeListeners(new MessageListener());
+        eventBus.subscribeListeners(new MessageListener(), new OtherMessageListener());
 
         long end = System.currentTimeMillis();
         System.out.println("DEBUG: testSubscription took " + (end - start) + " ms");
