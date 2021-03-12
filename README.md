@@ -2,20 +2,23 @@
 
 A compact framework that allows you to create custom events and listen to them.
 Especially useful for projects that use a UI, such as Swing or Android, when trying to
-separate the View and the Controller
+separate the View and the Controller.
 
 It uses streams, which means it is supported only by **Java 8+**
 # Usage
 
-Keep in mind that EventBus is not a class that contains static methods, which means that
+Keep in mind that the EventBus class doesn't contain static methods, which means that
 you can have multiple instances of it in a project, allowing you to have different event streams.
 
 ```java
-
-
 private final EventBus bus = new EventBus();
 ```
-This should be placed in your main class.
+This should be placed in your main class. If you plan on using more than one in your project,
+I'd recommend giving it a name:
+
+```java
+private final EventBus bus = new EventBus("TestBus");
+```
 
 ### Example Event
 
@@ -116,7 +119,7 @@ If you use Maven, add this to your pom.xml:
     <dependency>
         <groupId>com.github.SearchForMe</groupId>
         <artifactId>event-bus</artifactId>
-        <version>v1.0.3</version>
+        <version>v1.1.0</version>
     </dependency>
 </dependencies>
 ```
@@ -132,10 +135,10 @@ allprojects {
 }
 
 dependencies {
-    compile 'com.github.SearchForMe:event-bus:v1.0.3'
+    compile 'com.github.SearchForMe:event-bus:v1.1.0'
 }
 ```
 
 ### JAR File
 
-If you don't use any of the above, you can simply add the [JAR file](https://github.com/SearchForMe/event-bus/releases/tag/v1.0.3) to your dependencies.
+If you don't use any of the above, you can simply add the [JAR file](https://github.com/SearchForMe/event-bus/releases/tag/v1.1.0) to your dependencies.

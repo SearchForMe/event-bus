@@ -1,5 +1,7 @@
 package cf.searchforme.eventbus;
 
+import org.jetbrains.annotations.NotNull;
+
 import java.lang.reflect.Method;
 
 public final class Subscriber implements Comparable<Subscriber>{
@@ -30,7 +32,7 @@ public final class Subscriber implements Comparable<Subscriber>{
     }
 
     @Override
-    public int compareTo(Subscriber o) {
+    public int compareTo(@NotNull Subscriber o) {
         return -1 * Integer.compare(getPriority(), o.getPriority());
     }
 }
