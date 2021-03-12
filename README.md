@@ -13,7 +13,7 @@ you can have multiple instances of it in a project, allowing you to have differe
 ```java
 
 
-private final EventBus bus=new EventBus();
+private final EventBus bus = new EventBus();
 ```
 This should be placed in your main class.
 
@@ -116,7 +116,7 @@ If you use Maven, add this to your pom.xml:
     <dependency>
         <groupId>com.github.SearchForMe</groupId>
         <artifactId>event-bus</artifactId>
-        <version>v1.0.2</version>
+        <version>v1.0.3</version>
     </dependency>
 </dependencies>
 ```
@@ -132,10 +132,10 @@ allprojects {
 }
 
 dependencies {
-    compile 'com.github.SearchForMe:event-bus:v1.0.2'
+    compile 'com.github.SearchForMe:event-bus:v1.0.3'
 }
 ```
 
 ### JAR File
 
-If you don't use any of the above, you can simply add the [JAR file](https://github.com/SearchForMe/event-bus/releases/tag/v1.0) to your dependencies.
+If you don't use any of the above, you can simply add the [JAR file](https://github.com/SearchForMe/event-bus/releases/tag/v1.0.3) to your dependencies.
