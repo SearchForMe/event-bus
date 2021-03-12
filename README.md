@@ -116,7 +116,7 @@ If you use Maven, add this to your pom.xml:
     <dependency>
         <groupId>com.github.SearchForMe</groupId>
         <artifactId>event-bus</artifactId>
-        <version>v1.0.1</version>
+        <version>v1.0.2</version>
     </dependency>
 </dependencies>
 ```
@@ -127,12 +127,12 @@ Whereas if you use Gradle, add this to your build.gradle:
 ```gradle
 allprojects {
     repositories {
-        maven { url "https://jitpack.io" }
+        maven { url = "https://jitpack.io" }
     }
 }
 
 dependencies {
-    compile 'com.github.SearchForMe:event-bus:v1.0.1'
+    compile 'com.github.SearchForMe:event-bus:v1.0.2'
 }
 ```
 
